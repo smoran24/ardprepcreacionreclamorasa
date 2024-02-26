@@ -1,0 +1,1 @@
+sap.ui.define(["AR_DP_ADMIN_CREACIONRECLAMO_RASA/AR_DP_ADMIN_CREACIONRECLAMO_RASA/controller/CreacionReclamo.controller"],function(o){"use strict";QUnit.module("CreacionReclamo Controller");QUnit.test("I should test the CreacionReclamo controller",function(e){var n=new o;n.onInit();e.ok(n)})});

@@ -1,0 +1,160 @@
+<mvc:View controllerName="AR_DP_ADMIN_CREACIONRECLAMO_RASA.AR_DP_ADMIN_CREACIONRECLAMO_RASA.controller.CreacionReclamo" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:core="sap.ui.core" xmlns="sap.m" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<sap.ui.layout:Grid xmlns:sap.ui.layout="sap.ui.layout" defaultIndent="L0 M0 S0" defaultSpan="L3 M6 S12" position="Left" width="100%"
+							containerQuery="false" vSpacing="0" visible="true">
+							<sap.ui.layout:content>
+								<HBox>
+									<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Bare"
+										visible="true" displayInline="false">
+										<items>
+											<Text text="Entrega" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<Input id="entrega" width="auto" placeholder="" change="entrega"/>
+										</items>
+									</VBox>
+								</HBox>
+								<HBox>
+									<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Bare"
+										visible="true" displayInline="false">
+										<items>
+											<Text text="Remito Legal" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<Input id="remito" width="auto" placeholder=""/>
+										</items>
+									</VBox>
+								</HBox>
+								<HBox>
+									<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Bare"
+										visible="true" displayInline="false">
+										<items>
+											<Text text="Material" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<Input id="material" type="Text" placeholder="Material" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp"
+												suggestionItems="{path: 'material>/'}">
+												<suggestionItems>
+													<core:Item text="{material>MATERIAL}"/>
+												</suggestionItems>
+											</Input>
+										</items>
+									</VBox>
+								</HBox>
+								<HBox>
+									<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Bare"
+										visible="true" displayInline="false">
+										<items>
+											<Text text=". " width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<Button id="btnConsulta" text="Buscar" type="Accept" press="validar" class="sapUiSmallMarginEnd"/>
+										</items>
+									</VBox>
+								</HBox>
+							</sap.ui.layout:content>
+						</sap.ui.layout:Grid>
+						<VBox width="20px"/>
+						<Panel>
+							<Table mode="MultiSelect" items="{listadoReclamo>/}" width="auto" id="tMaestra" growing="true" growingScrollToLoad="true" noDataText="{worklistView>/tableNoDataText}"
+								growingThreshold="100" sticky="ColumnHeaders" busyIndicatorDelay="{listadoReclamo>/SELECT}" selectionChange="generacionjson">
+								<columns>
+									<Column hAlign="Center" width="8%">
+										<Text text="Entrega"/>
+									</Column>
+									<Column hAlign="Center" width="10%">
+										<Text text="Remito Legal"/>
+									</Column>
+									<Column hAlign="Center" width="7%">
+										<Text text="Fecha Remito"/>
+									</Column>
+									<Column hAlign="Center" width="7%">
+										<Text text="Pedido Web"/>
+									</Column>
+									<Column hAlign="Center" width="6%">
+										<Text text="Pedido Dealer"/>
+									</Column>
+									<Column hAlign="Center" width="6%">
+										<Text text="Tipo Pedido"/>
+									</Column>
+									<Column hAlign="Center" width="10%">
+										<Text text="Nro Pieza"/>
+									</Column>
+									<!--<Column hAlign="Left" width="7%">-->
+									<!--	<Text text="Descripción"/>-->
+									<!--</Column>-->
+									<Column hAlign="Center" width="7%">
+										<Text text="Cant Facturada"/>
+									</Column>
+									<Column hAlign="Center" width="7%">
+										<Text text="Cant reclamada"/>
+									</Column>
+									<Column hAlign="Center" width="8%">
+										<Text text="Cant a Reclamar"/>
+									</Column>
+									<!--<Column hAlign="Center" width="8%">-->
+									<!--	<Text text="Factura SAP"/>-->
+									<!--</Column>-->
+									<Column hAlign="Center" width="8%">
+										<Text text="Factura Legal"/>
+									</Column>
+									<Column hAlign="Center" width="7%">
+										<Text text="Fecha Factura"/>
+									</Column>
+									<Column hAlign="Center" width="5%">
+										<Text text="Editar"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem >
+										<cells>
+											<Text text="{path: 'listadoReclamo>Entrega' }"/>
+											<Text text="{path: 'listadoReclamo>Remitolegal' }"/>
+											<Text text="{path: 'listadoReclamo>Fecharemito' }"/>
+											<Text text="{path: 'listadoReclamo>Pedidoweb' }"/>
+											<Text text="{path: 'listadoReclamo>Pedidodealer' }"/>
+											<Text text="{path: 'listadoReclamo>tpedido' }"/>
+											<Text text="{path: 'listadoReclamo>Material' }  {path: 'listadoReclamo>Descripcion' } "/>
+											<!--<Text text="{path: 'listadoReclamo>Descripcion' }"/>-->
+											<Text text="{path: 'listadoReclamo>Cantidadfacturada' }"/>
+											<Text text="{path: 'listadoReclamo>cantreclamo' }"/>
+											<Input id="CanRecl" value="{listadoReclamo>cantidadreclamada}" editable="false"/>
+											<!--<Text text="{path: 'listadoReclamo>Facturasap' }"/>-->
+											<Text text="{path: 'listadoReclamo>Facturalegal' }"/>
+											<Text text="{path: 'listadoReclamo>Fechafactura' }"/>
+											<Button type="Ghost" icon="sap-icon://edit" press="Modificar" width="100%"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</Panel>
+					</content>
+					<footer>
+						<Bar class="sapContrast sapContrastPlus">
+							<contentLeft>
+								<Label id="totalOp"/>
+							</contentLeft>
+							<contentRight>
+								<!--<Button id="eliminarmasivo" icon="sap-icon://create-form" text="eliminar masivo" type="Accept" press="fndetele2" class="sapUiSmallMarginEnd"/>-->
+								<Button id="btngenerar" icon="sap-icon://create-form" text="Generar " type="Accept" press="validajson" class="sapUiSmallMarginEnd"/>
+								<Button text="Salir" type="Reject" icon="sap-icon://log" press="onSalir"/>
+							</contentRight>
+						</Bar>
+					</footer>
+					<customHeader>
+						<Bar class="sapContrastPlus" design="Header" visible="false">
+							<contentLeft>
+								<VBox width="15px"/>
+								<Text text="Consulta Operaciones de Crédito" class="tituloHead"/>
+								<!--Image height="28px" id="lNissan"/-->
+							</contentLeft>
+							<!--contentMiddle>
+							<Label text="Consulta Operaciones de Crédito" class="tituloHead"/>
+						</contentMiddle-->
+							<contentRight>
+								<Image height="20px" id="lCrediNissan"/>
+							</contentRight>
+						</Bar>
+					</customHeader>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
